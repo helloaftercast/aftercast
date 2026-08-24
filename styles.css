@@ -1,0 +1,325 @@
+@font-face {
+  font-family: Barlow;
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/fonts/barlow-400.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: Barlow;
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/fonts/barlow-italic-400.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: Barlow;
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/fonts/barlow-500.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Barlow Condensed";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/fonts/barlow-condensed-500.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Barlow Condensed";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/fonts/barlow-condensed-600.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Barlow Condensed";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("assets/fonts/barlow-condensed-700.woff2") format("woff2");
+}
+
+:root {
+  --ink: #111111;
+  --paper: #f4f1ea;
+  --rule: #111111;
+  --mute: #5c5a54;
+  --frame: #d9d4c8;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Barlow, "Helvetica Neue", sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px 8px;
+  border-bottom: 1px solid var(--ink);
+}
+
+.brand img {
+  height: 56px;
+  width: auto;
+  object-fit: contain;
+  object-position: left center;
+  mix-blend-mode: multiply;
+}
+
+.top-mail {
+  color: var(--ink);
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.top-mail:hover {
+  text-decoration: underline;
+}
+
+main {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 0 22px 80px;
+}
+
+.hero {
+  padding: 56px 0 48px;
+  border-bottom: 1px solid var(--ink);
+}
+
+.kicker {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+h1 {
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 600;
+  font-size: clamp(32px, 6vw, 52px);
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+  max-width: 18ch;
+}
+
+.lede {
+  max-width: 42em;
+  margin: 22px 0 28px;
+  color: var(--mute);
+}
+
+.btn {
+  display: inline-block;
+  background: var(--ink);
+  color: var(--paper);
+  text-decoration: none;
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 14px 22px;
+}
+
+.btn:hover {
+  opacity: 0.88;
+}
+
+.photos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding: 36px 0;
+}
+
+.photos-mid {
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+}
+
+figure figcaption {
+  margin-top: 8px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+
+.frame {
+  background:
+    repeating-linear-gradient(
+      -18deg,
+      transparent,
+      transparent 10px,
+      rgba(17, 17, 17, 0.04) 10px,
+      rgba(17, 17, 17, 0.04) 11px
+    ),
+    var(--frame);
+  aspect-ratio: 4 / 5;
+  position: relative;
+}
+
+.frame::after {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border: 1px solid rgba(17, 17, 17, 0.18);
+}
+
+.frame.tall {
+  aspect-ratio: 3 / 4;
+}
+
+.faq {
+  padding: 48px 0 12px;
+}
+
+.faq h2,
+.contact h2 {
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+details {
+  border-top: 1px solid var(--ink);
+}
+
+details:last-child {
+  border-bottom: 1px solid var(--ink);
+}
+
+summary {
+  list-style: none;
+  cursor: pointer;
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 600;
+  font-size: 22px;
+  letter-spacing: 0.02em;
+  padding: 18px 36px 18px 0;
+  position: relative;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+summary::after {
+  content: "+";
+  position: absolute;
+  right: 0;
+  top: 16px;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+details[open] summary::after {
+  content: "–";
+}
+
+details p {
+  padding: 0 8% 20px 0;
+  color: var(--mute);
+  max-width: 40em;
+}
+
+.contact {
+  padding: 64px 0 24px;
+}
+
+.mail-big {
+  display: inline-block;
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 600;
+  font-size: clamp(28px, 6vw, 48px);
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  text-decoration: none;
+  line-height: 1;
+  border-bottom: 2px solid var(--ink);
+}
+
+.mail-big:hover {
+  opacity: 0.7;
+}
+
+.contact p {
+  margin-top: 16px;
+  color: var(--mute);
+}
+
+footer {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 24px 22px 48px;
+  border-top: 1px solid var(--ink);
+  color: var(--mute);
+  font-size: 14px;
+}
+
+.foot-name {
+  margin-top: 10px;
+  font-family: "Barlow Condensed", sans-serif;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+@media (max-width: 720px) {
+  .top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .brand img {
+    height: 48px;
+  }
+
+  .photos {
+    grid-template-columns: 1fr;
+  }
+
+  summary {
+    font-size: 20px;
+  }
+}
