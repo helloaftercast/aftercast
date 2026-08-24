@@ -1,42 +1,29 @@
 # Aftercast
 
-Static one-page site. Host on **Cloudflare Pages** (free). Do not use a China mainland server.
+Live Pages URL: https://aftercast-2sa.pages.dev  
+Domain: **aftercast.net** (Cloudflare Registrar)
 
-## 1. GitHub
+Static one-page site. Videos are unlisted YouTube embeds (`data-youtube` on each `.player`).
 
-From this folder only (`aftercast/`), not the parent trading-dashboard repo:
+## Custom domain (after purchase)
+
+1. Cloudflare → **Workers & Pages** → project **aftercast** (not “Deploy with Workers” on the domain receipt page).
+2. **Custom domains** → add `aftercast.net` and `www.aftercast.net`.
+3. Wait until both show **Active**.
+4. **Email** → **Email Routing**: destination Gmail, address `hello@aftercast.net`.
+
+## Push updates
 
 ```bash
-cd aftercast
-git init
-git add index.html styles.css assets _headers .gitignore README.md
-git commit -m "Add Aftercast site"
+cd "/Users/tianzhong/交易看板/aftercast"
+git add -A
+git commit -m "Update site"
+git push
 ```
 
-Create an empty GitHub repo named `aftercast`, then:
+## YouTube clips
 
-```bash
-git branch -M main
-git remote add origin https://github.com/YOUR_USER/aftercast.git
-git push -u origin main
-```
-
-Repo root must contain `index.html`.
-
-## 2. Cloudflare Pages
-
-1. [dash.cloudflare.com](https://dash.cloudflare.com) → Workers & Pages → Create → Pages → Connect to Git.
-2. Select the `aftercast` repo.
-3. Framework preset: **None**. Build command: empty. Output directory: `/` (leave default).
-4. Deploy. Open the `*.pages.dev` URL and check the logo, FAQ, and mail links.
-
-## 3. Domain
-
-1. Buy `aftercast.com` (or `.co`) at Cloudflare Registrar.
-2. Pages → Custom domains → add apex and `www`.
-3. Email → Email Routing: `hello@aftercast.com` → your Gmail.
-
-Then replace `hello@aftercast.com` in `index.html` if the domain is different, and push.
+Upload Unlisted. Paste the video ID (or full watch URL) into `data-youtube=""` on In the tank / On the water.
 
 ## Local preview
 

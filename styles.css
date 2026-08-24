@@ -206,10 +206,114 @@ figure figcaption {
   aspect-ratio: 3 / 4;
 }
 
+.video-lede {
+  color: var(--mute);
+  max-width: 40em;
+  margin: 0 0 28px;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding-bottom: 40px;
+}
+
+.video-grid h3 {
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 600;
+  font-size: 22px;
+  letter-spacing: 0.02em;
+}
+
+.video-note {
+  color: var(--mute);
+  font-size: 15px;
+  margin: 6px 0 12px;
+}
+
+.video-slot,
+.player iframe,
+.player video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--ink);
+  background:
+    repeating-linear-gradient(
+      -18deg,
+      transparent,
+      transparent 10px,
+      rgba(17, 17, 17, 0.04) 10px,
+      rgba(17, 17, 17, 0.04) 11px
+    ),
+    var(--frame);
+}
+
+.player iframe,
+.player video {
+  background: #111111;
+  object-fit: contain;
+}
+
+.video-slot {
+  position: relative;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.video-slot:hover {
+  opacity: 0.88;
+}
+
+.play {
+  position: absolute;
+  left: 50%;
+  top: 42%;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 14px 0 14px 24px;
+  border-color: transparent transparent transparent var(--ink);
+  transform: translate(-40%, -50%);
+}
+
+.video-cta {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 16px;
+  text-align: center;
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.video-pending {
+  cursor: default;
+}
+
+.video-backup {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.video-backup a {
+  color: var(--mute);
+}
+
 .faq {
   padding: 48px 0 12px;
 }
 
+.videos {
+  padding: 48px 0 8px;
+  border-bottom: 1px solid var(--ink);
+}
+
+.videos h2,
 .faq h2,
 .contact h2 {
   font-family: "Barlow Condensed", sans-serif;
@@ -315,7 +419,8 @@ footer {
     height: 48px;
   }
 
-  .photos {
+  .photos,
+  .video-grid {
     grid-template-columns: 1fr;
   }
 
