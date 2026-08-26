@@ -47,3 +47,37 @@
 
   document.querySelectorAll(".player").forEach(mount);
 })();
+
+(function () {
+  var flow = document.querySelector(".flow");
+  var panels = document.querySelectorAll(".flow-details details");
+  if (!flow || !panels.length) return;
+
+  var steps = flow.querySelectorAll("a[href^='#step-']");
+
+  function setCurrent(id) {
+    steps.forEach(function (a) {
+      a.classList.toggle("is-current", a.getAttribute("href") === "#" + id);
+    });
+  }
+
+  steps.forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      var id = (a.getAttribute("href") || "").slice(1);
+      var target = document.getElementById(id);
+      if (!target) return;
+      e.preventDefault();
+      panels.forEach(function (d) {
+        d.open = d.id === id;
+      });
+      setCurrent(id);
+      target.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    });
+  });
+
+  panels.forEach(function (d) {
+    d.addEventListener("toggle", function () {
+      if (d.open) setCurrent(d.id);
+    });
+  });
+})();
