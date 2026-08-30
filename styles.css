@@ -497,8 +497,13 @@ h1 {
   background: linear-gradient(180deg, #4a90c8 0 42%, #f4f8fc 42%);
 }
 
-.swatch-pearl {
-  background: #f4f1ea;
+.swatch-leopard {
+  background:
+    radial-gradient(circle at 32% 38%, #3a2a1c 0 22%, transparent 24%),
+    radial-gradient(circle at 62% 30%, #4a3424 0 18%, transparent 20%),
+    radial-gradient(circle at 48% 68%, #2c2118 0 20%, transparent 22%),
+    radial-gradient(circle at 74% 62%, #3a2a1c 0 16%, transparent 18%),
+    #f0ebe3;
 }
 
 .swatch.is-on {
