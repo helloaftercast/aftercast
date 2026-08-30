@@ -9,7 +9,7 @@
     var btn = host.querySelector('[data-finish="' + id + '"]');
     if (!btn) return;
     img.src = btn.getAttribute("data-src") || base;
-    img.style.filter = btn.getAttribute("data-filter") || "";
+    img.style.filter = "";
     img.alt = btn.getAttribute("aria-label") || "";
     host.querySelectorAll("[data-finish]").forEach(function (el) {
       el.classList.toggle("is-on", el.getAttribute("data-finish") === id);

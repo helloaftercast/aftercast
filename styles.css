@@ -429,7 +429,7 @@ h1 {
 
 .lure-stage {
   width: 100%;
-  background: transparent;
+  background: var(--paper);
 }
 
 .lure-stage img {
