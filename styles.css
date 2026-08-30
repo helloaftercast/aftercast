@@ -216,12 +216,37 @@ h1 {
 }
 
 .zoom-shot {
+  position: relative;
   display: block;
   width: 100%;
   padding: 0;
   border: 0;
   background: transparent;
+  color: inherit;
+  text-decoration: none;
   cursor: zoom-in;
+}
+
+.zoom-shot::after {
+  content: "+";
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 20px;
+  line-height: 26px;
+  text-align: center;
+  pointer-events: none;
+}
+
+.gallery-hint {
+  margin: 12px calc(var(--rail) + var(--gutter)) 0;
+  font-size: 14px;
+  color: var(--mute);
 }
 
 .carousel-track img {

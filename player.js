@@ -152,14 +152,14 @@
 })();
 
 (function () {
-  var shots = document.querySelectorAll(".zoom-shot");
-  if (!shots.length) return;
+  var gallery = document.querySelector(".gallery");
+  if (!gallery) return;
 
   var overlay = document.createElement("div");
   overlay.className = "lightbox";
   overlay.setAttribute("role", "dialog");
   overlay.setAttribute("aria-modal", "true");
-  overlay.setAttribute("aria-label", "Enlarged sample photo");
+  overlay.setAttribute("aria-label", "Original sample photo");
   overlay.innerHTML =
     '<button type="button" class="lightbox-close" aria-label="Close">×</button><img alt="">';
   document.body.appendChild(overlay);
@@ -170,12 +170,10 @@
   var startX = 0;
   var dragged = false;
 
-  function openFrom(btn) {
-    var img = btn.querySelector("img");
-    if (!img) return;
-    lastFocus = btn;
-    big.src = img.currentSrc || img.src;
-    big.alt = img.alt || "";
+  function open(src, alt, from) {
+    lastFocus = from;
+    big.src = src;
+    big.alt = alt || "";
     overlay.classList.add("is-open");
     document.body.style.overflow = "hidden";
     closeBtn.focus();
@@ -189,18 +187,25 @@
     if (lastFocus) lastFocus.focus();
   }
 
-  shots.forEach(function (btn) {
-    btn.addEventListener("pointerdown", function (e) {
-      startX = e.clientX;
-      dragged = false;
-    });
-    btn.addEventListener("pointermove", function (e) {
-      if (Math.abs(e.clientX - startX) > 12) dragged = true;
-    });
-    btn.addEventListener("click", function () {
-      if (dragged) return;
-      openFrom(btn);
-    });
+  gallery.addEventListener("pointerdown", function (e) {
+    startX = e.clientX;
+    dragged = false;
+  });
+  gallery.addEventListener("pointermove", function (e) {
+    if (Math.abs(e.clientX - startX) > 24) dragged = true;
+  });
+  gallery.addEventListener("click", function (e) {
+    var shot = e.target.closest(".zoom-shot");
+    if (!shot) return;
+    if (dragged) {
+      e.preventDefault();
+      return;
+    }
+    var href = shot.getAttribute("href");
+    if (!href) return;
+    e.preventDefault();
+    var img = shot.querySelector("img");
+    open(href, img ? img.alt : "", shot);
   });
 
   overlay.addEventListener("click", function (e) {
