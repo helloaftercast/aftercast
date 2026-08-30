@@ -351,8 +351,8 @@ h1 {
 
 .lure-board {
   display: grid;
-  grid-template-columns: 180px minmax(0, 1fr);
-  gap: 8px 12px;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 8px 16px;
   align-items: center;
 }
 
@@ -428,18 +428,20 @@ h1 {
 
 .lure-stage {
   grid-column: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
+  min-height: 260px;
   background: #ece8e0;
-  overflow: hidden;
 }
 
 .lure-stage img {
   display: block;
-  width: 100%;
+  width: 72%;
+  max-width: 420px;
   height: auto;
-  max-height: none;
   object-fit: contain;
-  background: #ece8e0;
 }
 
 .lure-fallback {
