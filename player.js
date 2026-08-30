@@ -100,18 +100,32 @@
   var root = document.querySelector("[data-carousel]");
   if (!root) return;
 
-  var slides = root.querySelectorAll(".carousel-window figure");
+  var track = root.querySelector(".carousel-track");
+  var slides = root.querySelectorAll(".carousel-track figure");
   var prev = root.querySelector("[data-carousel-prev]");
   var next = root.querySelector("[data-carousel-next]");
-  var count = document.querySelector("[data-carousel-count]");
+  if (!track || !slides.length) return;
+
   var index = 0;
 
+  function perView() {
+    var n = parseInt(getComputedStyle(root).getPropertyValue("--per-view"), 10);
+    return n > 0 ? n : 3;
+  }
+
+  function maxIndex() {
+    return Math.max(0, slides.length - perView());
+  }
+
   function show(i) {
-    index = (i + slides.length) % slides.length;
-    slides.forEach(function (slide, n) {
-      slide.classList.toggle("is-active", n === index);
-    });
-    if (count) count.textContent = index + 1 + " / " + slides.length;
+    index = Math.max(0, Math.min(maxIndex(), i));
+    var slide = slides[0];
+    var styles = getComputedStyle(track);
+    var gap = parseFloat(styles.columnGap || styles.gap) || 0;
+    var step = slide.getBoundingClientRect().width + gap;
+    track.style.transform = "translateX(" + (-index * step) + "px)";
+    if (prev) prev.disabled = index <= 0;
+    if (next) next.disabled = index >= maxIndex();
   }
 
   if (prev) prev.addEventListener("click", function () { show(index - 1); });
@@ -133,5 +147,6 @@
     if (dx < -40) show(index + 1);
   }, { passive: true });
 
+  window.addEventListener("resize", function () { show(index); });
   show(0);
 })();

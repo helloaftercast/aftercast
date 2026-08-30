@@ -166,48 +166,48 @@ h1 {
 }
 
 .carousel {
+  --per-view: 3;
+  --gap: 16px;
   display: grid;
   grid-template-columns: 44px 1fr 44px;
   align-items: center;
   gap: 12px;
-  max-width: 720px;
 }
 
 .carousel-window {
-  position: relative;
-  border: 1px solid var(--ink);
-  background: var(--frame);
   overflow: hidden;
 }
 
-.carousel-window figure {
-  display: none;
+.carousel-track {
+  display: flex;
+  width: 100%;
+  gap: var(--gap);
+  transition: transform 0.35s ease;
+}
+
+.carousel-track figure {
+  flex: 0 0 calc((100% - (var(--per-view) - 1) * var(--gap)) / var(--per-view));
   margin: 0;
+  min-width: 0;
 }
 
-.carousel-window figure.is-active {
-  display: block;
-}
-
-.carousel-window img {
+.carousel-track img {
   display: block;
   width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: contain;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
   object-position: center;
-  background: #ece8df;
+  background: var(--frame);
+  border: 1px solid var(--ink);
 }
 
-.carousel-window figcaption {
-  margin: 0;
-  padding: 10px 12px 12px;
+.carousel-track figcaption {
+  margin-top: 8px;
   font-family: "Barlow Condensed", sans-serif;
   font-size: 13px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--mute);
-  border-top: 1px solid var(--ink);
-  background: var(--paper);
 }
 
 .carousel-btn {
@@ -225,14 +225,9 @@ h1 {
   opacity: 0.72;
 }
 
-.carousel-count {
-  max-width: 720px;
-  margin: 10px 0 0 56px;
-  font-family: "Barlow Condensed", sans-serif;
-  font-size: 13px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--mute);
+.carousel-btn:disabled {
+  opacity: 0.28;
+  cursor: default;
 }
 
 .frame {
@@ -551,12 +546,9 @@ footer {
   }
 
   .carousel {
+    --per-view: 1;
     grid-template-columns: 36px 1fr 36px;
     gap: 8px;
-  }
-
-  .carousel-count {
-    margin-left: 44px;
   }
 
   .flow {
