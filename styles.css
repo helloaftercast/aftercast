@@ -161,7 +161,8 @@ h1 {
 }
 
 .videos,
-.gallery {
+.gallery,
+.colors {
   --rail: 44px;
   --gutter: 12px;
   --per-view: 3;
@@ -326,6 +327,90 @@ h1 {
   cursor: default;
 }
 
+.colors {
+  padding: 40px 0 44px;
+  border-bottom: 1px solid var(--ink);
+}
+
+.lure-stage {
+  width: 100%;
+  border: 1px solid var(--ink);
+  background: var(--frame);
+  overflow: hidden;
+}
+
+.lure-stage canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  cursor: ew-resize;
+  touch-action: pan-y;
+}
+
+.lure-fallback {
+  margin: 16px;
+  color: var(--mute);
+  font-size: 15px;
+}
+
+.swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 22px;
+  margin-top: 16px;
+}
+
+.swatch {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: auto;
+  height: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  color: var(--ink);
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.swatch::before {
+  content: "";
+  width: 22px;
+  height: 22px;
+  border: 1px solid var(--ink);
+  border-radius: 50%;
+}
+
+.swatch-citrus::before {
+  background: linear-gradient(180deg, #7ec8c4 0 30%, #d5e36a 30% 62%, #fff8ee 62%);
+}
+
+.swatch-blossom::before {
+  background: linear-gradient(180deg, #f4b4c4 0 40%, #fff6f4 40%);
+}
+
+.swatch-gulf::before {
+  background: linear-gradient(180deg, #6aa8d8 0 42%, #f3f8fc 42%);
+}
+
+.swatch-pearl::before {
+  background: #f4f1ea;
+}
+
+.swatch.is-on {
+  outline: none;
+}
+
+.swatch.is-on::before {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
 .frame {
   background:
     repeating-linear-gradient(
@@ -445,6 +530,7 @@ h1 {
 }
 
 .videos h2,
+.colors h2,
 .faq h2,
 .contact h2 {
   font-family: "Barlow Condensed", sans-serif;
@@ -621,7 +707,8 @@ footer {
   }
 
   .videos,
-  .gallery {
+  .gallery,
+  .colors {
     --rail: 36px;
     --gutter: 8px;
     --per-view: 1;
