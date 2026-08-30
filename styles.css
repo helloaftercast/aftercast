@@ -284,10 +284,9 @@ h1 {
   border: 1px solid #f4f1ea;
 }
 
-.lightbox-close {
+.lightbox-close,
+.lightbox-nav {
   position: absolute;
-  top: 12px;
-  right: 16px;
   width: 44px;
   height: 44px;
   border: 1px solid #f4f1ea;
@@ -296,6 +295,24 @@ h1 {
   font-size: 28px;
   line-height: 1;
   cursor: pointer;
+}
+
+.lightbox-close {
+  top: 12px;
+  right: 16px;
+}
+
+.lightbox-nav {
+  top: 50%;
+  margin-top: -22px;
+}
+
+.lightbox-prev {
+  left: 16px;
+}
+
+.lightbox-next {
+  right: 16px;
 }
 
 .carousel-track figcaption {
@@ -416,10 +433,13 @@ h1 {
   overflow: hidden;
 }
 
-.lure-stage canvas {
+.lure-stage img {
   display: block;
   width: 100%;
   height: auto;
+  max-height: 520px;
+  object-fit: contain;
+  background: #e8e4dc;
 }
 
 .lure-fallback {

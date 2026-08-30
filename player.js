@@ -161,19 +161,36 @@
   overlay.setAttribute("aria-modal", "true");
   overlay.setAttribute("aria-label", "Original sample photo");
   overlay.innerHTML =
-    '<button type="button" class="lightbox-close" aria-label="Close">×</button><img alt="">';
+    '<button type="button" class="lightbox-close" aria-label="Close">×</button>' +
+    '<button type="button" class="lightbox-nav lightbox-prev" aria-label="Previous photo">‹</button>' +
+    '<button type="button" class="lightbox-nav lightbox-next" aria-label="Next photo">›</button>' +
+    '<img alt="">';
   document.body.appendChild(overlay);
 
   var big = overlay.querySelector("img");
   var closeBtn = overlay.querySelector(".lightbox-close");
+  var prevBtn = overlay.querySelector(".lightbox-prev");
+  var nextBtn = overlay.querySelector(".lightbox-next");
+  var shots = Array.prototype.slice.call(gallery.querySelectorAll(".zoom-shot"));
+  var current = 0;
   var lastFocus = null;
   var startX = 0;
   var dragged = false;
 
-  function open(src, alt, from) {
+  function showAt(i) {
+    if (!shots.length) return;
+    current = (i + shots.length) % shots.length;
+    var shot = shots[current];
+    var img = shot.querySelector("img");
+    big.src = shot.getAttribute("href");
+    big.alt = img ? img.alt : "";
+    lastFocus = shot;
+  }
+
+  function open(from) {
+    var i = shots.indexOf(from);
     lastFocus = from;
-    big.src = src;
-    big.alt = alt || "";
+    showAt(i >= 0 ? i : 0);
     overlay.classList.add("is-open");
     document.body.style.overflow = "hidden";
     closeBtn.focus();
@@ -201,11 +218,18 @@
       e.preventDefault();
       return;
     }
-    var href = shot.getAttribute("href");
-    if (!href) return;
+    if (!shot.getAttribute("href")) return;
     e.preventDefault();
-    var img = shot.querySelector("img");
-    open(href, img ? img.alt : "", shot);
+    open(shot);
+  });
+
+  prevBtn.addEventListener("click", function (e) {
+    e.stopPropagation();
+    showAt(current - 1);
+  });
+  nextBtn.addEventListener("click", function (e) {
+    e.stopPropagation();
+    showAt(current + 1);
   });
 
   overlay.addEventListener("click", function (e) {
@@ -213,6 +237,9 @@
   });
 
   document.addEventListener("keydown", function (e) {
+    if (!overlay.classList.contains("is-open")) return;
     if (e.key === "Escape") close();
+    if (e.key === "ArrowLeft") showAt(current - 1);
+    if (e.key === "ArrowRight") showAt(current + 1);
   });
 })();
