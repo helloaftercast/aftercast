@@ -333,17 +333,16 @@ h1 {
 }
 
 .lure-board {
-  display: grid;
-  grid-template-columns: 44px minmax(0, 1fr) 44px;
-  column-gap: 12px;
-  align-items: center;
+  position: relative;
+  display: block;
+  min-height: 480px;
 }
 
 .lure-arrow {
   width: 44px;
-  height: 44px;
-  border: 1px solid var(--ink);
-  background: var(--paper);
+  height: 36px;
+  border: 0;
+  background: transparent;
   color: var(--ink);
   font-size: 28px;
   line-height: 1;
@@ -352,14 +351,6 @@ h1 {
 
 .lure-arrow:hover {
   opacity: 0.72;
-}
-
-.lure-board-main {
-  display: grid;
-  grid-template-columns: 168px minmax(0, 1fr);
-  gap: 8px 20px;
-  align-items: center;
-  min-height: 420px;
 }
 
 .lure-spec .lure-cat,
@@ -376,6 +367,14 @@ h1 {
   margin-bottom: 8px;
 }
 
+.lure-spec {
+  position: absolute;
+  left: 0;
+  top: 28px;
+  z-index: 2;
+  width: 168px;
+}
+
 .lure-spec h2 {
   font-family: "Barlow Condensed", sans-serif;
   font-weight: 700;
@@ -383,7 +382,10 @@ h1 {
   letter-spacing: 0.02em;
   line-height: 0.95;
   text-transform: uppercase;
-  margin: 0 0 22px;
+  margin: 0 0 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--ink);
+  width: 3.2em;
 }
 
 .lure-spec dl {
@@ -427,9 +429,23 @@ h1 {
 }
 
 .lure-finishes {
-  grid-column: 2;
   text-align: center;
-  padding-top: 8px;
+  padding-top: 18px;
+}
+
+.lure-turn-label {
+  margin: 16px 0 0;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+
+.lure-turn {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
 }
 
 .lure-finishes-title {
@@ -776,18 +792,18 @@ footer {
   }
 
   .lure-board {
-    grid-template-columns: 36px minmax(0, 1fr) 36px;
-    column-gap: 8px;
+    min-height: 0;
   }
 
-  .lure-board-main {
-    grid-template-columns: 1fr;
-    min-height: 0;
+  .lure-spec {
+    position: static;
+    width: auto;
+    margin-bottom: 12px;
   }
 
   .lure-spec h2 {
     font-size: 32px;
-    margin-bottom: 14px;
+    width: auto;
   }
 
   .flow {
