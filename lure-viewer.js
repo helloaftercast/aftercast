@@ -275,23 +275,12 @@ function boot() {
   });
 
   var yaw = 0.42;
-  var dragging = false;
-  var lastX = 0;
-  var idle = true;
-  var idleTimer = 0;
-
-  function poke() {
-    idle = false;
-    window.clearTimeout(idleTimer);
-    idleTimer = window.setTimeout(function () {
-      idle = true;
-    }, 2600);
-  }
+  var target = 0.42;
 
   function size() {
     var box = canvas.parentElement || host;
     var w = box.clientWidth || 640;
-    var h = Math.max(360, Math.round(w * 0.58));
+    var h = Math.max(380, Math.round(w * 0.62));
     renderer.setSize(w, h, false);
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
@@ -309,33 +298,8 @@ function boot() {
   host.addEventListener("click", function (e) {
     var btn = e.target.closest("[data-finish]");
     if (btn) setFinish(btn.getAttribute("data-finish"));
-    if (e.target.closest("[data-lure-left]")) {
-      yaw -= 0.45;
-      poke();
-    }
-    if (e.target.closest("[data-lure-right]")) {
-      yaw += 0.45;
-      poke();
-    }
-  });
-
-  canvas.addEventListener("pointerdown", function (e) {
-    dragging = true;
-    poke();
-    lastX = e.clientX;
-    canvas.setPointerCapture(e.pointerId);
-  });
-  canvas.addEventListener("pointermove", function (e) {
-    if (!dragging) return;
-    poke();
-    yaw += (e.clientX - lastX) * 0.01;
-    lastX = e.clientX;
-  });
-  canvas.addEventListener("pointerup", function () {
-    dragging = false;
-  });
-  canvas.addEventListener("pointercancel", function () {
-    dragging = false;
+    if (e.target.closest("[data-lure-left]")) target -= Math.PI / 2;
+    if (e.target.closest("[data-lure-right]")) target += Math.PI / 2;
   });
 
   window.addEventListener("resize", size);
@@ -343,7 +307,7 @@ function boot() {
   setFinish("citrus");
 
   function tick() {
-    if (idle) yaw += 0.0035;
+    yaw += (target - yaw) * 0.1;
     lure.rotation.y = yaw;
     renderer.render(scene, camera);
     requestAnimationFrame(tick);
