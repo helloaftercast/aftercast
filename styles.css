@@ -335,7 +335,7 @@ h1 {
 .lure-stage {
   width: 100%;
   border: 1px solid var(--ink);
-  background: var(--frame);
+  background: #e8e4dc;
   overflow: hidden;
 }
 
