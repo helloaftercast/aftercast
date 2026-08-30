@@ -25,6 +25,18 @@
     el.appendChild(iframe);
   }
 
+  function fileVideo(el, src) {
+    var title = el.getAttribute("data-title") || "Video";
+    var video = document.createElement("video");
+    video.src = src;
+    video.controls = true;
+    video.playsInline = true;
+    video.preload = "metadata";
+    video.title = title;
+    el.innerHTML = "";
+    el.appendChild(video);
+  }
+
   function pendingSlot(el) {
     var href = el.getAttribute("data-instagram") || "https://www.instagram.com/";
     var title = el.getAttribute("data-title") || "Video";
@@ -40,8 +52,10 @@
   }
 
   function mount(el) {
+    var file = (el.getAttribute("data-video") || "").trim();
     var id = youtubeId(el.getAttribute("data-youtube"));
-    if (id) youtubeFrame(el, id);
+    if (file) fileVideo(el, file);
+    else if (id) youtubeFrame(el, id);
     else pendingSlot(el);
   }
 

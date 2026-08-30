@@ -172,6 +172,24 @@ h1 {
   border-bottom: 1px solid var(--ink);
 }
 
+.photos-two {
+  grid-template-columns: 1fr 1fr;
+}
+
+figure img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center;
+  background: var(--frame);
+  border: 1px solid var(--ink);
+}
+
+figure img.tall {
+  aspect-ratio: 3 / 4;
+}
+
 figure figcaption {
   margin-top: 8px;
   font-family: "Barlow Condensed", sans-serif;
@@ -217,6 +235,11 @@ figure figcaption {
   grid-template-columns: 1fr 1fr;
   gap: 20px;
   padding-bottom: 40px;
+}
+
+.video-grid-one {
+  grid-template-columns: 1fr;
+  max-width: 720px;
 }
 
 .video-grid h3 {
@@ -486,7 +509,9 @@ footer {
   }
 
   .photos,
-  .video-grid {
+  .photos-two,
+  .video-grid,
+  .video-grid-one {
     grid-template-columns: 1fr;
   }
 
