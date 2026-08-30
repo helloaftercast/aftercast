@@ -160,41 +160,77 @@ h1 {
   opacity: 0.88;
 }
 
-.photos {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  padding: 36px 0;
-}
-
-.photos-mid {
-  border-top: 1px solid var(--ink);
+.gallery {
+  padding: 36px 0 48px;
   border-bottom: 1px solid var(--ink);
 }
 
-.photos-two {
-  grid-template-columns: 1fr 1fr;
+.carousel {
+  display: grid;
+  grid-template-columns: 44px 1fr 44px;
+  align-items: center;
+  gap: 12px;
+  max-width: 720px;
 }
 
-figure img {
+.carousel-window {
+  position: relative;
+  border: 1px solid var(--ink);
+  background: var(--frame);
+  overflow: hidden;
+}
+
+.carousel-window figure {
+  display: none;
+  margin: 0;
+}
+
+.carousel-window figure.is-active {
+  display: block;
+}
+
+.carousel-window img {
   display: block;
   width: 100%;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
   object-position: center;
-  background: var(--frame);
-  border: 1px solid var(--ink);
+  background: #ece8df;
 }
 
-figure img.tall {
-  aspect-ratio: 3 / 4;
-}
-
-figure figcaption {
-  margin-top: 8px;
+.carousel-window figcaption {
+  margin: 0;
+  padding: 10px 12px 12px;
   font-family: "Barlow Condensed", sans-serif;
   font-size: 13px;
   letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--mute);
+  border-top: 1px solid var(--ink);
+  background: var(--paper);
+}
+
+.carousel-btn {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.carousel-btn:hover {
+  opacity: 0.72;
+}
+
+.carousel-count {
+  max-width: 720px;
+  margin: 10px 0 0 56px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--mute);
 }
@@ -509,10 +545,18 @@ footer {
   }
 
   .photos,
-  .photos-two,
   .video-grid,
   .video-grid-one {
     grid-template-columns: 1fr;
+  }
+
+  .carousel {
+    grid-template-columns: 36px 1fr 36px;
+    gap: 8px;
+  }
+
+  .carousel-count {
+    margin-left: 44px;
   }
 
   .flow {
