@@ -150,3 +150,59 @@
   window.addEventListener("resize", function () { show(index); });
   show(0);
 })();
+
+(function () {
+  var shots = document.querySelectorAll(".zoom-shot");
+  if (!shots.length) return;
+
+  var overlay = document.createElement("div");
+  overlay.className = "lightbox";
+  overlay.setAttribute("role", "dialog");
+  overlay.setAttribute("aria-modal", "true");
+  overlay.setAttribute("aria-label", "Enlarged sample photo");
+  overlay.innerHTML =
+    '<button type="button" class="lightbox-close" aria-label="Close">×</button><img alt="">';
+  document.body.appendChild(overlay);
+
+  var big = overlay.querySelector("img");
+  var closeBtn = overlay.querySelector(".lightbox-close");
+  var lastFocus = null;
+  var startX = 0;
+
+  function openFrom(btn) {
+    var img = btn.querySelector("img");
+    if (!img) return;
+    lastFocus = btn;
+    big.src = img.currentSrc || img.src;
+    big.alt = img.alt || "";
+    overlay.classList.add("is-open");
+    document.body.style.overflow = "hidden";
+    closeBtn.focus();
+  }
+
+  function close() {
+    if (!overlay.classList.contains("is-open")) return;
+    overlay.classList.remove("is-open");
+    big.removeAttribute("src");
+    document.body.style.overflow = "";
+    if (lastFocus) lastFocus.focus();
+  }
+
+  shots.forEach(function (btn) {
+    btn.addEventListener("pointerdown", function (e) {
+      startX = e.clientX;
+    });
+    btn.addEventListener("click", function (e) {
+      if (Math.abs(e.clientX - startX) > 12) return;
+      openFrom(btn);
+    });
+  });
+
+  overlay.addEventListener("click", function (e) {
+    if (e.target === overlay || e.target === closeBtn) close();
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") close();
+  });
+})();
