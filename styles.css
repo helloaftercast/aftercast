@@ -350,10 +350,9 @@ h1 {
 }
 
 .lure-board {
-  display: grid;
-  grid-template-columns: 150px minmax(0, 1fr);
-  gap: 8px 16px;
-  align-items: center;
+  position: relative;
+  display: block;
+  width: 100%;
 }
 
 .lure-arrow {
@@ -386,9 +385,11 @@ h1 {
 }
 
 .lure-spec {
-  position: static;
-  width: auto;
-  align-self: center;
+  position: absolute;
+  left: 0;
+  top: 28px;
+  z-index: 2;
+  width: 148px;
 }
 
 .lure-spec h2 {
@@ -427,19 +428,13 @@ h1 {
 }
 
 .lure-stage {
-  grid-column: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 100%;
-  min-height: 260px;
-  background: #ece8e0;
+  background: transparent;
 }
 
 .lure-stage img {
   display: block;
-  width: 72%;
-  max-width: 420px;
+  width: 100%;
   height: auto;
   object-fit: contain;
 }
@@ -451,9 +446,8 @@ h1 {
 }
 
 .lure-finishes {
-  grid-column: 1 / -1;
   text-align: center;
-  padding-top: 8px;
+  padding-top: 4px;
 }
 
 .lure-turn-label {
@@ -814,12 +808,10 @@ footer {
     --per-view: 1;
   }
 
-  .lure-board {
-    grid-template-columns: 1fr;
-  }
-
-  .lure-stage {
-    grid-column: 1;
+  .lure-spec {
+    position: static;
+    width: auto;
+    margin-bottom: 8px;
   }
 
   .lure-spec h2 {
