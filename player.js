@@ -168,6 +168,7 @@
   var closeBtn = overlay.querySelector(".lightbox-close");
   var lastFocus = null;
   var startX = 0;
+  var dragged = false;
 
   function openFrom(btn) {
     var img = btn.querySelector("img");
@@ -191,9 +192,13 @@
   shots.forEach(function (btn) {
     btn.addEventListener("pointerdown", function (e) {
       startX = e.clientX;
+      dragged = false;
     });
-    btn.addEventListener("click", function (e) {
-      if (Math.abs(e.clientX - startX) > 12) return;
+    btn.addEventListener("pointermove", function (e) {
+      if (Math.abs(e.clientX - startX) > 12) dragged = true;
+    });
+    btn.addEventListener("click", function () {
+      if (dragged) return;
       openFrom(btn);
     });
   });
