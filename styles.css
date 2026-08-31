@@ -506,6 +506,10 @@ h1 {
     #f0ebe3;
 }
 
+.swatch-butterfly {
+  background: linear-gradient(180deg, #1c4ea8 0 38%, #5b8fd9 38% 58%, #f4f7fc 58%);
+}
+
 .swatch.is-on {
   outline: 2px solid var(--ink);
   outline-offset: 3px;
