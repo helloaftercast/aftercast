@@ -27,11 +27,13 @@
 
   function fileVideo(el, src) {
     var title = el.getAttribute("data-title") || "Video";
+    var poster = (el.getAttribute("data-poster") || "").trim();
     var video = document.createElement("video");
     video.src = src;
+    if (poster) video.poster = poster;
     video.controls = true;
     video.playsInline = true;
-    video.preload = "metadata";
+    video.preload = poster ? "none" : "metadata";
     video.title = title;
     el.innerHTML = "";
     el.appendChild(video);
