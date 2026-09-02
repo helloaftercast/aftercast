@@ -803,14 +803,34 @@ footer {
 }
 
 @media (max-width: 720px) {
+  main {
+    padding: 0 18px 64px;
+  }
+
   .top {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
+    padding: 16px 18px 10px;
   }
 
   .brand img {
     height: 48px;
+  }
+
+  .hero {
+    padding: 36px 0 32px;
+  }
+
+  h1 {
+    max-width: none;
+    font-size: 34px;
+  }
+
+  .btn {
+    display: block;
+    width: 100%;
+    text-align: center;
   }
 
   .photos {
@@ -818,22 +838,95 @@ footer {
   }
 
   .videos,
-  .gallery,
   .colors {
-    --rail: 36px;
-    --gutter: 8px;
+    --rail: 0px;
+    --gutter: 0px;
+  }
+
+  .videos .stage,
+  .colors .stage {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .videos .stage-rail,
+  .colors .stage-rail {
+    display: none;
+  }
+
+  .gallery {
+    --rail: 0px;
+    --gutter: 0px;
     --per-view: 1;
+  }
+
+  .gallery .stage {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "main main"
+      "prev next";
+    column-gap: 8px;
+    row-gap: 10px;
+  }
+
+  .gallery .stage-main {
+    grid-area: main;
+  }
+
+  .gallery [data-carousel-prev] {
+    grid-area: prev;
+  }
+
+  .gallery [data-carousel-next] {
+    grid-area: next;
+  }
+
+  .gallery .carousel-btn {
+    width: 100%;
+    height: 44px;
+  }
+
+  .gallery-hint {
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .lure-spec {
     position: static;
     width: auto;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
   }
 
   .lure-spec h2 {
     font-size: 32px;
     width: auto;
+  }
+
+  .lure-spec dl div {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 0;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(17, 17, 17, 0.14);
+  }
+
+  .lure-spec dt {
+    margin-bottom: 0;
+  }
+
+  .lure-finishes {
+    text-align: left;
+    padding-top: 12px;
+  }
+
+  .swatches {
+    justify-content: flex-start;
+  }
+
+  .lure-finishes-note {
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .flow {
@@ -849,5 +942,10 @@ footer {
 
   summary {
     font-size: 20px;
+  }
+
+  footer {
+    padding-left: 18px;
+    padding-right: 18px;
   }
 }
