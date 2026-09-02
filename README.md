@@ -15,7 +15,7 @@ Static one-page site. Videos are unlisted YouTube embeds (`data-youtube` on each
 ## Push updates
 
 ```bash
-cd "/Users/tianzhong/交易看板/aftercast"
+cd "/Users/tianzhong/创业看板/aftercast"
 git add -A
 git commit -m "Update site"
 git push

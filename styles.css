@@ -515,6 +515,14 @@ h1 {
   outline-offset: 3px;
 }
 
+.lure-finishes-note {
+  max-width: 34em;
+  margin: 16px auto 0;
+  color: var(--mute);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
 .frame {
   background:
     repeating-linear-gradient(
