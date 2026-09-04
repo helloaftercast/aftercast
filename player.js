@@ -17,7 +17,7 @@
   function youtubeFrame(el, id) {
     var title = el.getAttribute("data-title") || "Video";
     var iframe = document.createElement("iframe");
-    iframe.src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(id);
+    iframe.src = "https://www.youtube.com/embed/" + encodeURIComponent(id);
     iframe.title = title;
     iframe.allow =
       "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
