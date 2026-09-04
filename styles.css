@@ -584,6 +584,19 @@ h1 {
   object-fit: contain;
 }
 
+.player + h3 {
+  margin-top: 36px;
+}
+
+.player-portrait {
+  max-width: 360px;
+}
+
+.player-portrait iframe,
+.player-portrait video {
+  aspect-ratio: 9 / 16;
+}
+
 .video-slot {
   position: relative;
   text-decoration: none;

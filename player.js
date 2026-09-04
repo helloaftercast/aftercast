@@ -6,6 +6,8 @@
     if (watch) return watch[1];
     var short = raw.match(/youtu\.be\/([a-zA-Z0-9_-]{11})/);
     if (short) return short[1];
+    var shorts = raw.match(/shorts\/([a-zA-Z0-9_-]{11})/);
+    if (shorts) return shorts[1];
     var embed = raw.match(/embed\/([a-zA-Z0-9_-]{11})/);
     if (embed) return embed[1];
     if (/^[a-zA-Z0-9_-]{11}$/.test(raw)) return raw;
