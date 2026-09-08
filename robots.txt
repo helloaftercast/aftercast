@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /shops/
 
 Sitemap: https://aftercast.net/sitemap.xml

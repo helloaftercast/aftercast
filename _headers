@@ -13,3 +13,7 @@
 
 /player.js
   Cache-Control: public, max-age=0, must-revalidate
+
+/shops/*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: public, max-age=0, must-revalidate
