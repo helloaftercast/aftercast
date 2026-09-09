@@ -227,18 +227,10 @@
         slot: form.slot.value,
         note: form.note.value.trim()
       });
-      const btn = form.querySelector("[type=submit]");
-      function go() {
-        window.location.href = MESSENGER;
-      }
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(function () {
-          if (btn) btn.textContent = "Copied — opening Messenger…";
-          window.setTimeout(go, 700);
-        }, go);
+      if (window.playOrderChat) {
+        window.playOrderChat({ text: text, href: MESSENGER, copy: true });
       } else {
-        window.prompt("Copy your order, then paste it in Messenger:", text);
-        go();
+        window.location.href = MESSENGER;
       }
     });
   }

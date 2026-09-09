@@ -228,7 +228,9 @@
         slot: form.slot.value,
         note: form.note.value.trim()
       });
-      window.location.href = "https://wa.me/" + WA + "?text=" + encodeURIComponent(text);
+      var href = "https://wa.me/" + WA + "?text=" + encodeURIComponent(text);
+      if (window.playOrderChat) window.playOrderChat({ text: text, href: href });
+      else window.location.href = href;
     });
   }
 
