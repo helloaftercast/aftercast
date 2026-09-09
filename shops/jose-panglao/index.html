@@ -6,7 +6,7 @@
   <title>José Panglao — Charcoal-grill paluto, Tawala</title>
   <meta name="robots" content="noindex, nofollow">
   <meta name="description" content="Fresh catch on ice, priced by the hundred grams, grilled over coals the way you say. Ten minutes up from Alona Beach. Open daily 11:00–22:30.">
-  <link rel="stylesheet" href="styles.css?v=fx1">
+  <link rel="stylesheet" href="styles.css?v=fx2">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Work+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -289,22 +289,27 @@
     <img alt="">
     <button class="zoom-x" type="button" data-zoom-close aria-label="Close photo">Close</button>
   </div>
-  <div class="order-chat" data-order-chat data-name="José Panglao" data-reply="Salamat! We'll weigh the catch and confirm." hidden>
+  <div class="order-chat" data-order-chat data-name="José Panglao" data-reply="Salamat! We'll weigh the catch and confirm." data-continue="Open WhatsApp" hidden>
     <div class="order-chat-back"></div>
-    <div class="order-chat-phone" role="status" aria-live="polite">
+    <div class="order-chat-phone" role="dialog" aria-modal="true" aria-label="Order preview">
       <div class="chat-head">
         <span class="chat-avatar"></span>
         <div><b data-chat-name>José Panglao</b><small>online</small></div>
+        <button class="chat-x" type="button" data-chat-close aria-label="Close">×</button>
       </div>
       <div class="chat-body">
         <div class="bubble out"><span data-order-text></span><i class="ticks">✓✓</i></div>
         <div class="bubble in" data-reply-bubble></div>
+      </div>
+      <div class="chat-actions">
+        <button type="button" class="chat-stay" data-chat-stay>Stay here</button>
+        <button type="button" class="chat-go" data-chat-go>Open WhatsApp</button>
       </div>
     </div>
   </div>
   <script src="hero.js?v=pan2"></script>
   <script src="zoom.js"></script>
   <script src="order.js?v=fx1"></script>
-  <script src="order-fx.js?v=fx1"></script>
+  <script src="order-fx.js?v=fx2"></script>
 </body>
 </html>

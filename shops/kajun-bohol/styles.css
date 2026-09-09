@@ -1423,3 +1423,78 @@ body.order-chat-open {
     transition: none;
   }
 }
+
+
+.order-chat .chat-head {
+  position: relative;
+  padding-right: 2.8rem;
+}
+
+.order-chat .chat-head > div {
+  flex: 1;
+  min-width: 0;
+}
+
+.order-chat .chat-x {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.7rem;
+  width: 1.9rem;
+  height: 1.9rem;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.order-chat .chat-x:hover {
+  background: rgba(255, 255, 255, 0.28);
+  transform: rotate(90deg);
+}
+
+.order-chat .chat-actions {
+  display: none;
+  gap: 0.45rem;
+  padding: 0.75rem 0.8rem 0.95rem;
+  background: #fff;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.order-chat.is-ready .chat-actions {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+}
+
+.order-chat .chat-stay,
+.order-chat .chat-go {
+  min-height: 2.75rem;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.order-chat .chat-stay {
+  border: 1.5px solid #cfc8c2;
+  background: #fff;
+  color: #333;
+}
+
+.order-chat .chat-go {
+  border: 0;
+  background: #075e54;
+  color: #fff;
+}
+
+.order-chat.is-messenger .chat-go {
+  background: #0084ff;
+}

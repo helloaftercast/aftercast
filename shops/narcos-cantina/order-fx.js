@@ -7,7 +7,33 @@
   const replyEl = layer && layer.querySelector("[data-reply-bubble]");
   const outEl = layer && layer.querySelector(".bubble.out");
   const inEl = layer && layer.querySelector(".bubble.in");
+  const goBtn = layer && layer.querySelector("[data-chat-go]");
+  const closeBtn = layer && layer.querySelector("[data-chat-close]");
+  const stayBtn = layer && layer.querySelector("[data-chat-stay]");
+  const backEl = layer && layer.querySelector(".order-chat-back");
   let sending = false;
+  let pendingHref = "";
+  let timers = [];
+
+  function later(fn, ms) {
+    const id = window.setTimeout(fn, ms);
+    timers.push(id);
+    return id;
+  }
+
+  function every(fn, ms) {
+    const id = window.setInterval(fn, ms);
+    timers.push(id);
+    return id;
+  }
+
+  function clearTimers() {
+    timers.forEach(function (id) {
+      window.clearTimeout(id);
+      window.clearInterval(id);
+    });
+    timers = [];
+  }
 
   function pop(el) {
     if (!el) return;
@@ -50,7 +76,23 @@
   });
 
   function go(href) {
-    window.location.href = href;
+    if (href) window.location.href = href;
+  }
+
+  function closeChat() {
+    if (!layer || layer.hidden) return;
+    clearTimers();
+    sending = false;
+    pendingHref = "";
+    layer.classList.remove("is-open", "is-ready");
+    document.body.classList.remove("order-chat-open");
+    window.setTimeout(function () {
+      layer.hidden = true;
+      if (textEl) textEl.textContent = "";
+      if (ticksEl) ticksEl.classList.remove("is-read");
+      if (outEl) outEl.classList.remove("is-in");
+      if (inEl) inEl.classList.remove("is-in");
+    }, reduce ? 0 : 380);
   }
 
   function typeText(el, text, done) {
@@ -61,7 +103,7 @@
     }
     var i = 0;
     var step = Math.max(3, Math.ceil(text.length / 40));
-    var id = window.setInterval(function () {
+    var id = every(function () {
       i += step;
       el.textContent = text.slice(0, i);
       var body = el.closest(".chat-body");
@@ -77,41 +119,54 @@
     if (sending) return;
     sending = true;
     var text = opts.text || "";
-    var href = opts.href;
+    pendingHref = opts.href || "";
     var copy = opts.copy;
 
     if (copy && navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(text).catch(function () {});
     }
 
-    if (!layer || !href) {
-      go(href);
+    if (!layer || !pendingHref) {
+      go(pendingHref);
+      sending = false;
       return;
     }
 
     if (nameEl) nameEl.textContent = layer.getAttribute("data-name") || "";
     if (replyEl) replyEl.textContent = layer.getAttribute("data-reply") || "Got it!";
+    if (goBtn) goBtn.textContent = layer.getAttribute("data-continue") || "Continue";
     if (textEl) textEl.textContent = "";
     if (ticksEl) ticksEl.classList.remove("is-read");
     if (outEl) outEl.classList.remove("is-in");
     if (inEl) inEl.classList.remove("is-in");
+    layer.classList.remove("is-ready");
 
     layer.hidden = false;
     document.body.classList.add("order-chat-open");
-    window.setTimeout(function () {
+    later(function () {
       layer.classList.add("is-open");
       if (outEl) outEl.classList.add("is-in");
       typeText(textEl, text, function () {
-        window.setTimeout(function () {
+        later(function () {
           if (ticksEl) ticksEl.classList.add("is-read");
         }, 280);
-        window.setTimeout(function () {
+        later(function () {
           if (inEl) inEl.classList.add("is-in");
+          layer.classList.add("is-ready");
         }, 720);
-        window.setTimeout(function () {
-          go(href);
-        }, 1600);
       });
     }, 40);
   };
+
+  if (closeBtn) closeBtn.addEventListener("click", closeChat);
+  if (stayBtn) stayBtn.addEventListener("click", closeChat);
+  if (backEl) backEl.addEventListener("click", closeChat);
+  if (goBtn) {
+    goBtn.addEventListener("click", function () {
+      go(pendingHref);
+    });
+  }
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeChat();
+  });
 })();
