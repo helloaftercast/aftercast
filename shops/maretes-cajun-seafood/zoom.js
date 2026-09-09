@@ -37,24 +37,39 @@
   }
 
   function openFrom(btn) {
-    const srcImg = btn.querySelector("img") || btn;
-    const src = btn.getAttribute("data-zoom") || srcImg.currentSrc;
-    const start = srcImg.getBoundingClientRect();
-    last = srcImg;
+    const srcImg = btn.querySelector("img");
+    const src = btn.getAttribute("data-zoom") || (srcImg && (srcImg.currentSrc || srcImg.src));
+    const startEl = srcImg || btn;
+    const start = startEl.getBoundingClientRect();
+    last = startEl;
     closing = false;
+    img.alt = (srcImg && srcImg.alt) || btn.getAttribute("data-zoom-alt") || "";
     img.src = src;
-    img.alt = srcImg.alt || "";
     layer.hidden = false;
     document.body.classList.add("zoom-lock");
     place(img, start, false);
     back.style.opacity = "0";
-    requestAnimationFrame(function () {
-      const nw = srcImg.naturalWidth || start.width * 2;
-      const nh = srcImg.naturalHeight || start.height * 2;
-      place(img, fit(nw, nh), true);
+
+    function reveal(nw, nh) {
+      if (closing) return;
+      place(img, fit(nw || start.width * 2, nh || start.height * 2), true);
       back.style.transition = "opacity .35s ease";
       back.style.opacity = "1";
       layer.classList.add("is-open");
+    }
+
+    requestAnimationFrame(function () {
+      if (srcImg && srcImg.naturalWidth) {
+        reveal(srcImg.naturalWidth, srcImg.naturalHeight);
+        return;
+      }
+      if (img.complete && img.naturalWidth) {
+        reveal(img.naturalWidth, img.naturalHeight);
+        return;
+      }
+      img.addEventListener("load", function () {
+        reveal(img.naturalWidth, img.naturalHeight);
+      }, { once: true });
     });
   }
 
