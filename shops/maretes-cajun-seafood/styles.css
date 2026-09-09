@@ -503,13 +503,53 @@ h1 {
   font-size: 0.92rem;
 }
 
+button.sheet-for {
+  width: 100%;
+  margin: 0;
+  background: none;
+  border: 0;
+  border-bottom: 1px dashed var(--line);
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+}
+
 .sheet-list b,
 .sheet-for b,
-.sheet-sea em {
+.sheet-sea em,
+.sheet-sea .add,
+.sheet-list .add {
   font-style: normal;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
+}
+
+.sheet-list .add,
+.sheet-sea .add,
+.add.extra {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-weight: 600;
+  color: inherit;
+  cursor: pointer;
+}
+
+.sheet-list .add:hover,
+.sheet-sea .add:hover,
+button.sheet-for:hover,
+.add.extra:hover {
+  color: var(--orange);
+}
+
+.sheet-list .add.is-added,
+.sheet-sea .add.is-added,
+button.sheet-for.is-added,
+.add.extra.is-added {
+  color: var(--orange);
 }
 
 .sheet-sea li {
@@ -522,9 +562,10 @@ h1 {
   font-size: 0.86rem;
 }
 
-.sheet-sea em {
+.sheet-sea .add {
   color: #3f3a34;
   font-size: 0.8rem;
+  text-align: right;
 }
 
 .sheet-chips {
@@ -566,6 +607,133 @@ h1 {
 
 .sheet-original:hover {
   color: var(--ink);
+}
+
+.ticket {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1.4rem;
+  align-items: start;
+}
+
+.ticket-bag,
+.ticket-form {
+  background: var(--foam);
+  border: 1px solid var(--line);
+  padding: 1.15rem 1.1rem 1.3rem;
+}
+
+.ticket h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.85rem;
+}
+
+.ticket-empty,
+.ticket-sum {
+  color: var(--mute);
+}
+
+.ticket-sum {
+  margin-top: 1rem;
+  font-weight: 600;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.ticket-lines {
+  list-style: none;
+}
+
+.ticket-lines li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 0.6rem;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed var(--line);
+  font-size: 0.92rem;
+}
+
+.ticket-qty {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.ticket-qty button {
+  width: 1.7rem;
+  height: 1.7rem;
+  border: 1px solid var(--line);
+  background: #fff;
+  cursor: pointer;
+  font: inherit;
+}
+
+.ticket-qty b {
+  min-width: 1.1rem;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.ticket-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem 0.9rem;
+}
+
+.ticket-form label {
+  display: grid;
+  gap: 0.3rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+
+.ticket-form input,
+.ticket-form select,
+.ticket-form textarea {
+  width: 100%;
+  padding: 0.55rem 0.65rem;
+  border: 1px solid var(--line);
+  background: #fff;
+  font: inherit;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--ink);
+}
+
+.ticket-notes {
+  grid-column: 1 / -1;
+}
+
+.ticket-form .btn {
+  grid-column: 1 / -1;
+  margin-top: 0.3rem;
+  justify-self: start;
+}
+
+.bag-dock {
+  position: fixed;
+  right: 1.2rem;
+  bottom: 1.2rem;
+  z-index: 30;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.1rem;
+  padding: 0.65rem 1.2rem;
+  border-radius: 999px;
+  background: var(--orange);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+}
+
+.dock[hidden],
+.bag-dock[hidden] {
+  display: none !important;
 }
 
 .zoom-lock {
@@ -844,7 +1012,9 @@ blockquote {
   .steps,
   .platters,
   .shots,
-  .sheet-grid {
+  .sheet-grid,
+  .ticket,
+  .ticket-form {
     grid-template-columns: 1fr;
   }
 
@@ -889,5 +1059,11 @@ blockquote {
   .dock:hover {
     transform: scale(1.05);
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.34);
+  }
+
+  .bag-dock {
+    left: 0.8rem;
+    right: 0.8rem;
+    bottom: 0.8rem;
   }
 }
