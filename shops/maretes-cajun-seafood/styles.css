@@ -498,12 +498,19 @@ h1 {
   justify-content: space-between;
   align-items: baseline;
   gap: 0.7rem;
-  padding: 0.38rem 0;
+  padding: 0;
   border-bottom: 1px dashed var(--line);
   font-size: 0.92rem;
 }
 
-button.sheet-for {
+.sheet-list li {
+  display: block;
+  padding: 0;
+  border: 0;
+}
+
+button.sheet-for,
+.add-line {
   width: 100%;
   margin: 0;
   background: none;
@@ -513,6 +520,16 @@ button.sheet-for {
   font: inherit;
   color: inherit;
   text-align: left;
+}
+
+.add-line,
+button.sheet-for {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.7rem;
+  min-height: 2.75rem;
+  padding: 0.45rem 0.2rem;
 }
 
 .sheet-list b,
@@ -526,14 +543,14 @@ button.sheet-for {
   white-space: nowrap;
 }
 
-.sheet-list .add,
-.sheet-sea .add,
-.add.extra {
-  padding: 0;
-  border: 0;
-  background: none;
+.add-chip {
+  padding: 0.45rem 0.6rem;
+  min-height: 2.4rem;
+  border: 1px solid var(--line);
+  background: #fff;
   font: inherit;
   font-weight: 600;
+  font-size: 0.8rem;
   color: inherit;
   cursor: pointer;
 }
@@ -541,31 +558,40 @@ button.sheet-for {
 .sheet-list .add:hover,
 .sheet-sea .add:hover,
 button.sheet-for:hover,
-.add.extra:hover {
+.add-line:hover,
+.add-chip:hover {
   color: var(--orange);
+}
+
+.add-line:hover,
+button.sheet-for:hover {
+  background: rgba(224, 112, 28, 0.06);
+}
+
+.add-chip:hover,
+.add-chip.is-added {
+  border-color: var(--orange);
 }
 
 .sheet-list .add.is-added,
 .sheet-sea .add.is-added,
 button.sheet-for.is-added,
-.add.extra.is-added {
+.add-line.is-added {
   color: var(--orange);
 }
 
 .sheet-sea li {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto auto;
-  gap: 0.35rem 0.55rem;
-  align-items: baseline;
-  padding: 0.32rem 0;
+  gap: 0.35rem 0.45rem;
+  align-items: center;
+  padding: 0.28rem 0;
   border-bottom: 1px dashed var(--line);
   font-size: 0.86rem;
 }
 
 .sheet-sea .add {
   color: #3f3a34;
-  font-size: 0.8rem;
-  text-align: right;
 }
 
 .sheet-chips {
@@ -576,9 +602,24 @@ button.sheet-for.is-added,
 }
 
 .sheet-chips li {
-  padding: 0.22rem 0.55rem;
+  padding: 0;
+  border: 0;
+}
+
+.sheet-chips button {
+  padding: 0.4rem 0.7rem;
+  min-height: 2.4rem;
   border: 1px solid var(--line);
+  background: #fff;
+  font: inherit;
   font-size: 0.86rem;
+  cursor: pointer;
+}
+
+.sheet-chips button:hover,
+.sheet-chips button.is-picked {
+  border-color: var(--orange);
+  color: var(--orange);
 }
 
 .sheet-extra,
@@ -1021,6 +1062,14 @@ blockquote {
   .sheet-col + .sheet-col {
     border-left: 0;
     border-top: 1px dashed var(--line);
+  }
+
+  .sheet-sea li {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .sheet-sea li > span:first-child {
+    grid-column: 1 / -1;
   }
 
   .shots button {

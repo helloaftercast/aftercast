@@ -81,6 +81,12 @@
     render();
   }
 
+  function markPick(attr, value) {
+    document.querySelectorAll("[" + attr + "]").forEach(function (btn) {
+      btn.classList.toggle("is-picked", btn.getAttribute(attr) === value);
+    });
+  }
+
   function markAdds() {
     document.querySelectorAll("[data-add]").forEach(function (btn) {
       const id = btn.getAttribute("data-id");
@@ -200,6 +206,18 @@
   }
 
   document.addEventListener("click", function (e) {
+    const sauceBtn = e.target.closest("[data-sauce]");
+    if (sauceBtn && form) {
+      form.sauce.value = sauceBtn.getAttribute("data-sauce");
+      markPick("data-sauce", form.sauce.value);
+      return;
+    }
+    const heatBtn = e.target.closest("[data-heat]");
+    if (heatBtn && form) {
+      form.heat.value = heatBtn.getAttribute("data-heat");
+      markPick("data-heat", form.heat.value);
+      return;
+    }
     const addBtn = e.target.closest("[data-add]");
     if (addBtn) {
       add({
@@ -218,9 +236,17 @@
   });
 
   if (form) {
-    fillDays();
-    fillSlots();
+    try {
+      fillDays();
+      fillSlots();
+    } catch (err) {}
     dayEl.addEventListener("change", fillSlots);
+    form.sauce.addEventListener("change", function () {
+      markPick("data-sauce", form.sauce.value);
+    });
+    form.heat.addEventListener("change", function () {
+      markPick("data-heat", form.heat.value);
+    });
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       if (!cart.length) {
