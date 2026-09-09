@@ -1,16 +1,17 @@
 :root {
-  --night: #0e1418;
-  --panel: #172026;
-  --paper: #f3eee4;
-  --ink: #14110e;
-  --mute: #5c564c;
-  --line: #d8d0c2;
-  --orange: #e0701c;
-  --accent: #d4783a;
-  --orange-ink: #8a3d08;
-  --foam: #fffaf3;
-  --serif: "Playfair Display", Georgia, serif;
-  --sans: Lato, "Helvetica Neue", sans-serif;
+  --night: #241026;
+  --panel: #331739;
+  --paper: #faf2e7;
+  --ink: #24131c;
+  --mute: #6d5a62;
+  --line: #e6d4c5;
+  --orange: #d92277;
+  --accent: #ef5c9b;
+  --orange-ink: #8c1050;
+  --foam: #fff8ef;
+  --green: #3f9d63;
+  --serif: "Bebas Neue", "Arial Narrow", sans-serif;
+  --sans: Karla, "Helvetica Neue", sans-serif;
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-out: cubic-bezier(0, 0, 0.2, 1);
 }
@@ -117,7 +118,7 @@ a {
 }
 
 .btn-wa:hover {
-  box-shadow: 0 8px 20px rgba(224, 112, 28, 0.28);
+  box-shadow: 0 8px 20px rgba(217, 34, 119, 0.28);
 }
 
 .btn-ghost {
@@ -575,7 +576,7 @@ button.sheet-for:hover,
 
 .add-line:hover,
 button.sheet-for:hover {
-  background: rgba(224, 112, 28, 0.06);
+  background: rgba(217, 34, 119, 0.06);
 }
 
 .add-chip:hover,
@@ -1160,4 +1161,63 @@ blockquote {
     right: 0.8rem;
     bottom: 0.8rem;
   }
+}
+
+/* ── Narcos skin: Bebas display adjustments ── */
+
+.mark,
+h1,
+h2,
+.visit h2,
+.sheet-kicker,
+.foot-mark {
+  font-weight: 400;
+  letter-spacing: 0.035em;
+}
+
+.mark em,
+.foot-mark em,
+.hero-tag em {
+  font-style: normal;
+}
+
+.hero-tag,
+.steps li::before,
+.shots span:not(.photo-veil) {
+  font-style: normal;
+  letter-spacing: 0.04em;
+}
+
+h1 {
+  letter-spacing: 0.05em;
+}
+
+blockquote {
+  font-family: var(--sans);
+  font-style: italic;
+  font-size: 1.06rem;
+}
+
+.steps h3,
+.ticket h3 {
+  font-family: var(--serif);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  font-size: 1.35rem;
+}
+
+.sheet-h {
+  background: var(--green);
+}
+
+.sheet-h-orange {
+  background: var(--orange);
+}
+
+.visit dt {
+  color: #f0a3c6;
+}
+
+.hero-stage img {
+  object-position: 50% 74%;
 }
