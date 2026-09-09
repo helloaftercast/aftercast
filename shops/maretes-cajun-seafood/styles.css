@@ -555,6 +555,16 @@ button.sheet-for {
   cursor: pointer;
 }
 
+.add,
+.sheet-chips button,
+.ticket-qty button,
+.btn,
+.dock,
+.bag-dock {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
 .sheet-list .add:hover,
 .sheet-sea .add:hover,
 button.sheet-for:hover,
@@ -702,12 +712,13 @@ button.sheet-for.is-added,
 }
 
 .ticket-qty button {
-  width: 1.7rem;
-  height: 1.7rem;
+  width: 2.2rem;
+  height: 2.2rem;
   border: 1px solid var(--line);
   background: #fff;
   cursor: pointer;
   font: inherit;
+  font-size: 1.05rem;
 }
 
 .ticket-qty b {
@@ -739,6 +750,7 @@ button.sheet-for.is-added,
   border: 1px solid var(--line);
   background: #fff;
   font: inherit;
+  font-size: 1rem;
   text-transform: none;
   letter-spacing: 0;
   color: var(--ink);
@@ -1070,6 +1082,39 @@ blockquote {
 
   .sheet-sea li > span:first-child {
     grid-column: 1 / -1;
+  }
+
+  .hero {
+    min-height: 72vh;
+  }
+
+  .add-chip,
+  .sheet-chips button {
+    min-height: 2.75rem;
+    font-size: 0.88rem;
+  }
+
+  .add-line,
+  button.sheet-for {
+    min-height: 3rem;
+  }
+
+  .sheet-col {
+    padding: 1rem 0.9rem 1.2rem;
+  }
+
+  .block {
+    padding: 3.2rem 0;
+  }
+
+  .ticket-form .btn {
+    width: 100%;
+    justify-self: stretch;
+    min-height: 3.1rem;
+  }
+
+  .foot {
+    padding-bottom: 6.5rem;
   }
 
   .shots button {
