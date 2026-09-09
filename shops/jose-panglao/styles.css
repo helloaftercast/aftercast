@@ -1497,3 +1497,34 @@ body.order-chat-open {
 .order-chat.is-messenger .chat-go {
   background: #0084ff;
 }
+
+/* ── logo fx: twinkling stars ── */
+
+.mark {
+  position: relative;
+  padding: 0.2rem 0.35rem;
+}
+
+.mark .spark {
+  position: absolute;
+  filter: drop-shadow(0 0 4px rgba(255, 209, 102, 0.7));
+  width: 10px;
+  height: 10px;
+  pointer-events: none;
+  clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%);
+  animation: spark-twinkle 2.6s ease-in-out infinite;
+}
+
+.mark .s1 { top: -9px;  left: -8px;   background: #ffd166; width: 13px; height: 13px; animation-delay: 0s; }
+.mark .s2 { top: -12px; right: 14%;   background: #ff8a5c; width: 9px; height: 9px; animation-delay: 0.7s; }
+.mark .s3 { bottom: -10px; right: -10px; background: #ffd166; width: 11px; height: 11px; animation-delay: 1.3s; }
+.mark .s4 { bottom: -8px; left: 28%;  background: #8be0d0; width: 8px; height: 8px; animation-delay: 1.9s; }
+
+@keyframes spark-twinkle {
+  0%, 100% { opacity: 0.4; transform: scale(0.65) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1.2) rotate(45deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mark .spark { animation: none; opacity: 0.85; }
+}
